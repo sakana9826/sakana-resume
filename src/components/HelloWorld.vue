@@ -80,7 +80,7 @@
       <p>1974，won the championship in my first free boxing match in Southeast Asia</p>
     </section>
 
-    <section class="mb-8">
+    <section id="pdf-button" class="mb-8">
       <div class="flex space-x-6 place-content-center">
         <button @click="downloadPDF" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
           下载简历 PDF
@@ -99,17 +99,27 @@ import html2canvas from "html2canvas";
 
 const downloadPDF = () => {
   const element = document.querySelector(".container");
+  const pdfButton = document.getElementById("pdf-button");
+
+  if (pdfButton){
+    pdfButton.style.display="none"
+  }
 
   html2canvas(element as HTMLElement, { scale: 2 }).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
     const pdf = new JsPDF({
       orientation: "portrait",
       unit: "px",
-      format: [canvas.width, canvas.height],
+      format: [canvas.width+400, canvas.height+400],
     });
 
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+    const margin = 200;
+    pdf.addImage(imgData, "PNG", margin, margin, canvas.width, canvas.height);
     pdf.save("resume.pdf");
   });
+
+  if (pdfButton) {
+    pdfButton.style.display = "block";
+  }
 };
 </script>
