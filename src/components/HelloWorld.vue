@@ -94,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import jsPDF from "jspdf";
+import JsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const downloadPDF = () => {
@@ -102,7 +102,7 @@ const downloadPDF = () => {
 
   html2canvas(element as HTMLElement, { scale: 2 }).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
+    const pdf = new JsPDF({
       orientation: "portrait",
       unit: "px",
       format: [canvas.width, canvas.height],
