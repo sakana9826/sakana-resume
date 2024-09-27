@@ -101,16 +101,16 @@ const downloadPDF = () => {
   const element = document.querySelector(".container");
   const pdfButton = document.getElementById("pdf-button");
 
-  if (pdfButton){
-    pdfButton.style.display="none"
+  if (pdfButton) {
+    pdfButton.style.display = "none"
   }
 
-  html2canvas(element as HTMLElement, { scale: 2 }).then((canvas) => {
+  html2canvas(element as HTMLElement, {scale: 2}).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
     const pdf = new JsPDF({
       orientation: "portrait",
       unit: "px",
-      format: [canvas.width+400, canvas.height+400],
+      format: [canvas.width + 400, canvas.height + 400],
     });
 
     const margin = 200;
