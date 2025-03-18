@@ -1,11 +1,15 @@
 <template>
+  <div>
+    <button @click="toggleLocale">{{ $i18n.locale === 'en' ? 'English' : '简体中文' }}</button>
+  </div>
+
   <div class="container mx-auto  py-8 max-w-4xl">
     <header class="mb-8">
-      <h1 class="text-4xl text-center font-bold text-gray-800">John Doe</h1>
-      <p class="text-xl text-center text-gray-600 mb-4">Creative and Innovative Web Developer</p>
+      <h1 class="text-4xl text-center font-bold text-gray-800">{{ $t('王力宏') }}</h1>
+      <p class="text-xl text-center text-gray-600 mb-4">{{ $t('这是一段介绍') }}</p>
       <div class="flex flex-wrap justify-between text-sm text-gray-600 border-t border-b border-gray-300 py-2">
         <span class="mr-4">
-          <i class="fas fa-map-marker-alt mr-1"></i> Please antville, CA 94588
+          <i class="fas fa-map-marker-alt mr-1"></i> {{ $t('地址') }}
         </span>
         <span class="mr-4">
           <i class="fas fa-phone mr-1"></i> (555) 123-4567
@@ -20,7 +24,7 @@
     </header>
 
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">Profiles</h2>
+      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('简介') }}</h2>
       <div class="flex space-x-6 place-content-center ">
         <a href="#" class="flex items-center text-blue-600 hover:underline" target="_blank">
           <i class="fab fa-linkedin mr-1"></i> LinkedIn
@@ -35,34 +39,30 @@
     </section>
 
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">Summary</h2>
+      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('总结') }}</h2>
       <p class="text-gray-700">
-        Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites
-        and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web
-        standards and
-        cutting-edge development techniques. Proven track record of leading successful projects from concept
-        to deployment.
+        <p v-html="$t('个人总结')"></p>
       </p>
     </section>
 
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">Experience</h2>
+      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('经验') }}</h2>
       <div class="mb-4">
         <div class="flex justify-between items-baseline">
-          <h3 class="text-xl font-semibold">Creative Solutions Inc.</h3>
-          <span class="text-gray-600">January 2019 to Present</span>
+          <h3 class="text-xl font-semibold">{{ $t('某家公司的名称') }}</h3>
+          <span class="text-gray-600">{{ $t('2019-2030') }}</span>
         </div>
         <div class="flex justify-between items-baseline">
-          <p class="text-lg text-gray-700">Senior Web Developer</p>
-          <p class="text-gray-600 mb-2">San Francisco, CA</p>
+          <p class="text-lg text-gray-700">{{ $t('担任职位xxx产品经理') }}</p>
+          <p class="text-gray-600 mb-2">{{ $t('公司地址上海北京') }}</p>
         </div>
         <a href="https://creativesolutions.inc/" class="text-blue-600 hover:underline">
           <i class="fas fa-link mr-1"></i>https://creativesolutions.inc/
         </a>
         <ul class="list-disc list-inside mt-2">
-          <li>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</li>
-          <li>Developed and implemented a new responsive framework, improving cross-device compatibility.</li>
-          <li>Mentored a team of four junior developers, fostering a culture of technical excellence.</li>
+          <li>{{ $t('工作描述一') }}</li>
+          <li>{{ $t('工作描述二') }}</li>
+          <li>{{ $t('工作描述三') }}</li>
         </ul>
       </div>
       <!-- Add more experience entries here -->
@@ -71,22 +71,22 @@
     <!-- Add Education, Projects, Skills, Certifications, and Languages sections here -->
 
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">References</h2>
-      <p>Available upon request</p>
+      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('参考文献') }}</h2>
+      <p>{{ $t('想加就加') }}</p>
     </section>
 
     <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">Education</h2>
-      <p>1974，won the championship in my first free boxing match in Southeast Asia</p>
+      <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('教育经历') }}</h2>
+      <p>{{ $t('1974年，第一次在东南亚打自由搏击就赢得了冠军') }}</p>
     </section>
 
     <section id="pdf-button" class="mb-8">
       <div class="flex space-x-6 place-content-center">
         <button @click="downloadPDF" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-          下载简历 PDF
+          {{ $t('下载简历 PDF') }}
         </button>
         <button @click="" class="bg-gray-500 text-white px-4 py-2 rounded">
-          智能一页（开发中）
+          {{ $t('智能一页（开发中）') }}
         </button>
       </div>
     </section>
@@ -96,6 +96,13 @@
 <script setup lang="ts">
 import JsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+const toggleLocale = () => {
+  locale.value = locale.value === 'en' ? 'zh' : 'en'
+}
 
 const downloadPDF = () => {
   const element = document.querySelector(".container");
