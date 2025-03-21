@@ -88,6 +88,10 @@
         <button @click="" class="bg-gray-500 text-white px-4 py-2 rounded">
           {{ $t('智能一页（开发中）') }}
         </button>
+        <button @click="postData" class="bg-gray-500 text-white px-4 py-2 rounded">
+          {{ $t('请求测试') }}
+        </button>
+        <span>{{ responseMessage }}</span>
       </div>
     </section>
   </div>
@@ -97,6 +101,8 @@
 import JsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { useI18n } from 'vue-i18n'
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { ref } from "vue";
 
 const { locale } = useI18n()
 
@@ -129,4 +135,45 @@ const downloadPDF = () => {
     pdfButton.style.display = "block";
   }
 };
+
+interface PostData {
+  message: string;
+  error: string;
+}
+
+interface PostReqData {
+  password: string;
+  email: string;
+}
+
+const responseMessage = ref<string>('');
+
+async function postData(): Promise<void> {
+  const data: PostReqData = {
+    password: 'sam',
+    email:"7333@qq.com"
+  };
+
+  try {
+    const response: AxiosResponse<PostData> = await api.post('/post', data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    responseMessage.value = response.data.message
+    console.log(response.data);
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error(err.message);
+  }
+}
+
+// 4. 创建 Axios 实例
+const api = axios.create({
+  baseURL: 'http://localhost:8080',
+  timeout: 10000,
+  headers: {
+    'Authorization': 'Bearer your-token-here'
+  }
+});
 </script>
