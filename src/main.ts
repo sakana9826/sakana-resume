@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import { createI18n } from 'vue-i18n';
 import App from './App.vue'
+import router from './router'
 
 import translations from './i18n/translations.json';
 
@@ -17,4 +18,5 @@ const i18n = createI18n({
 
 const app = createApp(App);
 app.use(i18n);
+app.use(router);
 app.mount('#app');

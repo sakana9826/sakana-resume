@@ -14,7 +14,8 @@
     "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.2",
     "vue": "^3.4.37",
-    "vue-i18n": "^10.0.6"
+    "vue-i18n": "^10.0.6",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
