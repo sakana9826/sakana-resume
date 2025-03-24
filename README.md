@@ -2,6 +2,9 @@
 
 一个基于 Vue 3 + TypeScript 的在线简历系统，支持访问码验证、中英文切换和 PDF 导出功能。
 
+## 相关项目
+- 后端项目：[sakana-resume-backend（go + gin + gorm）](https://github.com/sakana9826/sakana-resume-backend)
+
 ## 功能特点
 
 - 🔐 访问码验证
@@ -96,4 +99,12 @@ src/
 
 ## 许可证
 
-MIT License
+本项目采用 MIT 许可证。MIT 许可证是一个宽松的软件许可证，主要特点：
+
+- ✅ 可以自由使用、修改和分发代码
+- ✅ 可以将代码用于商业用途
+- ✅ 修改后的代码可以闭源
+- ❗ 需要在软件和文档中包含原始许可证和版权声明
+- ❗ 不提供任何担保
+
+完整的许可证文本请查看 [LICENSE](LICENSE) 文件。

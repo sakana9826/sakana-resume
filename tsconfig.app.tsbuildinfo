@@ -1,1 +1,1 @@
-{"root":["./src/main.ts","./src/vite-env.d.ts","./src/router/index.ts","./src/app.vue","./src/components/helloworld.vue","./src/views/accesscode.vue","./src/views/resume.vue"],"version":"5.6.2"}
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/config/api.ts","./src/router/index.ts","./src/types/html2pdf.d.ts","./src/app.vue","./src/views/accesscode.vue","./src/views/resume.vue"],"version":"5.6.2"}

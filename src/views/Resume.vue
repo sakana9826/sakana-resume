@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <button @click="toggleLocale" class="fixed top-4 right-4 bg-gray-500 text-white px-4 py-2 rounded">
+  <div class="fixed top-4 right-4 flex space-x-4">
+    <button @click="toggleLocale" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-600">
       {{ $i18n.locale === 'en' ? 'English' : '简体中文' }}
+    </button>
+    <button @click="downloadPDF" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      {{ isGenerating ? '生成中...' : $t('下载简历 PDF') }}
     </button>
   </div>
 
@@ -81,12 +84,6 @@
       <h2 class="text-2xl font-semibold mb-2 border-b border-gray-300 pb-1">{{ $t('教育经历') }}</h2>
       <p>{{ $t('1974年，第一次在东南亚打自由搏击就赢得了冠军') }}</p>
     </section>
-  </div>
-
-  <div class="fixed bottom-4 right-4">
-    <button @click="downloadPDF" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-700 shadow-lg">
-      {{ isGenerating ? '生成中...' : $t('下载简历 PDF') }}
-    </button>
   </div>
 </template>
 
