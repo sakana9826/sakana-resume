@@ -86,6 +86,20 @@ src/
 
 ## 部署
 
+### 使用 Docker 部署
+
+1. 构建 Docker 镜像
+```bash
+docker build -t sakana-resume .
+```
+
+2. 运行容器
+```bash
+docker run -d -p 80:80 sakana-resume
+```
+
+### 手动部署
+
 1. 修改 `.env.production` 中的后端 API 地址
 2. 运行 `pnpm build` 生成生产版本
 3. 将 `dist` 目录部署到 Web 服务器
