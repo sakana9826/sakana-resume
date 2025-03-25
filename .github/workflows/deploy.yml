@@ -25,16 +25,23 @@ jobs:
             # 拉取最新代码
             git pull origin main
             
+            # 获取当前时间作为版本号
+            VERSION=$(date +%Y%m%d_%H%M%S)
+            
             # 停止并删除旧容器
             docker stop sakana-resume || true
             docker rm sakana-resume || true
             
-            # 构建新镜像
-            docker build -t sakana-resume .
+            # 构建新镜像（带版本号）
+            docker build -t sakana-resume:$VERSION .
+            docker tag sakana-resume:$VERSION sakana-resume:latest
+            
+            # 删除旧镜像（保留最近5个版本）
+            docker images sakana-resume --format "{{.Tag}}" | grep -v "latest" | sort -r | tail -n +6 | xargs -r -I {} docker rmi sakana-resume:{}
             
             # 运行新容器
             docker run -d \
               --name sakana-resume \
               -p 3890:80 \
               --restart unless-stopped \
-              sakana-resume 
+              sakana-resume:latest 
