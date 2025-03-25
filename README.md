@@ -86,7 +86,31 @@ src/
 
 ## 部署
 
-### 使用 Docker 部署
+### 自动部署（推荐）
+
+本项目使用 GitHub Actions 实现自动部署。每次推送代码到 main 分支时，会自动在服务器上构建 Docker 镜像并部署。
+
+配置步骤：
+
+1. 在服务器上克隆项目并配置 Git
+```bash
+git clone https://github.com/your-username/sakana-resume.git
+cd sakana-resume
+```
+
+2. 在 GitHub 仓库的 Settings -> Secrets and variables -> Actions 中添加以下密钥：
+   - `SERVER_HOST`: 服务器 IP 或域名
+   - `SERVER_USERNAME`: 服务器用户名
+   - `SERVER_SSH_KEY`: 服务器 SSH 私钥
+
+3. 修改 `.github/workflows/deploy.yml` 中的项目路径：
+   ```yaml
+   cd /path/to/project  # 改为你的项目实际路径
+   ```
+
+4. 推送代码到 main 分支即可触发自动部署
+
+### 使用 Docker 手动部署
 
 1. 构建 Docker 镜像
 ```bash
